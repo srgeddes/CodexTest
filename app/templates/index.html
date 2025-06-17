@@ -3,22 +3,37 @@
 {% block title %}Cat Facts{% endblock %}
 
 {% block content %}
-<h1>Random Cat Fact</h1>
-<img id="cat-image" src="{{ image }}" alt="Cute cat" />
-<p id="cat-fact">{{ fact }}</p>
-<button id="new-fact">New Fact</button>
+<div class="card text-center">
+  <div class="card-body">
+    <h1 class="card-title mb-3">Random Cat Fact</h1>
+    <div id="image-container" class="mb-3">
+      <img id="cat-image" src="{{ image }}" alt="Cute cat" class="img-fluid" />
+    </div>
+    <p id="cat-fact" class="card-text">{{ fact }}</p>
+    <div id="loading" class="spinner-border text-primary my-3 d-none" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <button id="new-fact" class="btn btn-primary">New Fact</button>
+  </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
 <script>
-document.getElementById('new-fact').addEventListener('click', function() {
+const button = document.getElementById('new-fact');
+const loading = document.getElementById('loading');
+button.addEventListener('click', function() {
+  loading.classList.remove('d-none');
   fetch('{{ url_for('main.fact') }}')
     .then(response => response.json())
     .then(data => {
       document.getElementById('cat-fact').innerText = data.fact;
       document.getElementById('cat-image').src = data.image;
     })
-    .catch(err => console.error('Error fetching fact:', err));
+    .catch(err => console.error('Error fetching fact:', err))
+    .finally(() => {
+      loading.classList.add('d-none');
+    });
 });
 </script>
 {% endblock %}
