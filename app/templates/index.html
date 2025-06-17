@@ -4,5 +4,21 @@
 
 {% block content %}
 <h1>Random Cat Fact</h1>
-<p>{{ fact }}</p>
+<img id="cat-image" src="{{ image }}" alt="Cute cat" />
+<p id="cat-fact">{{ fact }}</p>
+<button id="new-fact">New Fact</button>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('new-fact').addEventListener('click', function() {
+  fetch('{{ url_for('main.fact') }}')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('cat-fact').innerText = data.fact;
+      document.getElementById('cat-image').src = data.image;
+    })
+    .catch(err => console.error('Error fetching fact:', err));
+});
+</script>
 {% endblock %}

@@ -1,13 +1,23 @@
-from flask import Blueprint, render_template
-import requests
+from flask import Blueprint, render_template, jsonify
+
+from .utils import get_random_fact, get_random_image
 
 main_bp = Blueprint('main', __name__)
 
 
 @main_bp.route('/')
 def index():
-    """Display a random cat fact."""
-    response = requests.get('https://catfact.ninja/fact', timeout=5)
-    data = response.json()
-    fact = data.get('fact', 'No fact available.')
-    return render_template('index.html', fact=fact)
+    """Display the homepage with a random cat fact and image."""
+    fact = get_random_fact()
+    image = get_random_image()
+    return render_template('index.html', fact=fact, image=image)
+
+
+@main_bp.route('/fact')
+def fact():
+    """Return a new random cat fact and image as JSON."""
+    data = {
+        'fact': get_random_fact(),
+        'image': get_random_image(),
+    }
+    return jsonify(data)
