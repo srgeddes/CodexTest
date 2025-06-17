@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 
-{% block title %}Cat Facts{% endblock %}
+{% block title %}Turtle Facts{% endblock %}
 
 {% block content %}
 <div class="card text-center">
   <div class="card-body">
-    <h1 class="card-title mb-3">Random Cat Fact</h1>
+    <h1 class="card-title mb-3">Random Turtle Fact</h1>
     <div id="image-container" class="mb-3">
-      <img id="cat-image" src="{{ image }}" alt="Cute cat" class="img-fluid" />
+      <img id="turtle-image" src="{{ image }}" alt="Turtle" class="img-fluid" />
     </div>
-    <p id="cat-fact" class="card-text">{{ fact }}</p>
+    <p id="turtle-fact" class="card-text">{{ fact }}</p>
     <div id="loading" class="spinner-border text-primary my-3 d-none" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
@@ -27,8 +27,8 @@ button.addEventListener('click', function() {
   fetch('{{ url_for('main.fact') }}')
     .then(response => response.json())
     .then(data => {
-      document.getElementById('cat-fact').innerText = data.fact;
-      document.getElementById('cat-image').src = data.image;
+      document.getElementById('turtle-fact').innerText = data.fact;
+      document.getElementById('turtle-image').src = data.image;
     })
     .catch(err => console.error('Error fetching fact:', err))
     .finally(() => {
