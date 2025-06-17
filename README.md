@@ -1,14 +1,14 @@
-# Cat Facts Flask App
+# Turtle Facts Flask App
 
-This project is a simple Flask application that displays a random cat fact. It follows common Flask conventions and keeps the code organized and easy to understand. Facts and images are retrieved from public APIs at runtime.
+This project is a simple Flask application that displays a random turtle fact. It follows common Flask conventions and keeps the code organized and easy to understand. Facts and images are retrieved from public APIs at runtime.
 
 ## Features
 
-- **Random cat facts** – The homepage loads with a unique fact every time, pulled from [catfact.ninja](https://catfact.ninja/fact).
-- **New fact on demand** – A button allows users to fetch another cat fact without refreshing the page.
-- **Cat images** – Each fact is paired with a random cat photo from the [Cataas](https://cataas.com/) API.
+- **Random turtle facts** – The homepage loads with a unique fact every time, pulled from a [GitHub dataset](https://raw.githubusercontent.com/Val7498/Turtle-facts-json/master/facts.json).
+- **New fact on demand** – A button allows users to fetch another turtle fact without refreshing the page.
+- **Turtle images** – Each fact is paired with a random turtle emoji from the [Twemoji](https://github.com/twitter/twemoji) or [OpenMoji](https://github.com/hfg-gmuend/openmoji) projects.
 - **Clean, responsive layout** – The site uses a modern design that works well on both desktop and mobile.
-- **Minimal setup** – Run locally with a single command to explore cat trivia.
+- **Minimal setup** – Run locally with a single command to explore turtle trivia.
 
 ## Setup
 
@@ -31,4 +31,4 @@ pip install -r requirements.txt
 python app.py
 ```
 
-Navigate to `http://localhost:5000` to view a random cat fact.
+Navigate to `http://localhost:5000` to view a random turtle fact.
